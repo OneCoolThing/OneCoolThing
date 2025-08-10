@@ -128,8 +128,10 @@ def html_page(title, body, desc=""):
         "</head><body>"
         "<header><div class=\"wrap\"><h1 style=\"margin:0\">" + html.escape(SITE_TITLE) + "</h1><div class=\"muted\">" + html.escape(SITE_DESC) + "</div></div></header>"
         "<main><div class=\"wrap\">" + body + ads + "</div></main>"
-        "<footer><div class=\"wrap muted\">© " + str(datetime.now().year) + " • Built by automation. As an Amazon Associate I earn from qualifying purchases. " + bmac + "</div></footer>""
+        "<footer><div class=\"wrap muted\">&copy; " + str(datetime.now().year) + " - Built by automation. As an Amazon Associate I earn from qualifying purchases. " + bmac + "</div></footer>"
         "</body></html>"
+    )
+
     )
 
 def build_post(summary):
