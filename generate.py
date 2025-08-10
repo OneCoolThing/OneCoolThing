@@ -108,7 +108,8 @@ def adsense_block():
 def html_page(title, body, desc=""):
     ads = adsense_block()
     bmac = "<a href='" + html.escape(BMAC_URL) + "' target='_blank' rel='noopener'>Buy me a coffee</a>" if BMAC_URL else ""
-    return (
+
+    head = (
         "<!doctype html><html lang=\"en\"><head>"
         "<meta charset=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>"
         "<title>" + html.escape(title) + " - " + html.escape(SITE_TITLE) + "</title>"
@@ -124,15 +125,25 @@ def html_page(title, body, desc=""):
         ".grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}"
         ".muted{color:#666}"
         "</style>"
-        "<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + html.escape(ADSENSE_CLIENT) + "\" crossorigin=\"anonymous\"></script>"
+        "<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="
+        + html.escape(ADSENSE_CLIENT)
+        + "\" crossorigin=\"anonymous\"></script>"
         "</head><body>"
-        "<header><div class=\"wrap\"><h1 style=\"margin:0\">" + html.escape(SITE_TITLE) + "</h1><div class=\"muted\">" + html.escape(SITE_DESC) + "</div></div></header>"
-        "<main><div class=\"wrap\">" + body + ads + "</div></main>"
-        "<footer><div class=\"wrap muted\">&copy; " + str(datetime.now().year) + " - Built by automation. As an Amazon Associate I earn from qualifying purchases. " + bmac + "</div></footer>"
+        "<header><div class=\"wrap\"><h1 style=\"margin:0\">" + html.escape(SITE_TITLE)
+        + "</h1><div class=\"muted\">" + html.escape(SITE_DESC) + "</div></div></header>"
+        "<main><div class=\"wrap\">"
+    )
+
+    tail = (
+        "</div></main>"
+        "<footer><div class=\"wrap muted\">&copy; " + str(datetime.now().year)
+        + " - Built by automation. As an Amazon Associate I earn from qualifying purchases. "
+        + bmac + "</div></footer>"
         "</body></html>"
     )
 
-    )
+    return head + body + ads + tail
+
 
 def build_post(summary):
     title = summary.get("title") or summary.get("displaytitle") or "Interesting Topic"
